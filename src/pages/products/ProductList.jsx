@@ -28,9 +28,9 @@ function ProductList() {
             </LeftContainer>
             <RightConatiner>
               <Title>{item.title}</Title>
-              {/* <Model></Model> */}
+
               <Category>{item.Category}</Category>
-              <Description>{item.Description}</Description>
+              <Description>{item.description}</Description>
               <Price> {item.price}</Price>
               <Button to="/product">Shop Now</Button>
             </RightConatiner>
@@ -40,26 +40,33 @@ function ProductList() {
     </>
   );
 }
-const MainContainer = styled.div`
-  width: 100%;
+const MainContainer = styled.ul`
   padding: 10px;
-`;
-const ProductContainer = styled.div`
+  list-style: none;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
 `;
-const LeftContainer = styled.div`
-  width: 40%;
-  padding: 20px;
+const ProductContainer = styled.li`
+  display: flex;
+  width: 50%;
+
+  justify-content: space-evenly;
+  align-items: center;
+`;
+const LeftContainer = styled.li`
+  width: 45%;
+  padding: 40px;
   text-align: center;
 `;
 const ProductImage = styled.img`
-  width: 80%;
+  width: 100%;
   display: block;
 `;
-const RightConatiner = styled.div`
-  width: 60%;
+const RightConatiner = styled.li`
+  width: 30%;
   padding: 20px;
 `;
 const Category = styled.span`
@@ -69,24 +76,31 @@ const Category = styled.span`
 `;
 const Description = styled.p`
   color: #686d71;
+  font-size: 8px;
+  text-align: center;
+  margin-top: 0;
 `;
 const Price = styled.p`
-  font-size: 40px;
-  font-weight: bold;
-`;
-const Model = styled.span`
   font-size: 20px;
   font-weight: bold;
+  text-align: center;
 `;
+
 const Title = styled.h1`
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
+  text-align: center;
+  margin-bottom: 0;
 `;
 const Button = styled(Link)`
+  margin: 0 30px auto;
+  display: flex;
+  display: inline-block;
+  border-radius: 8px;
   background: blue;
   color: white;
   border: none;
-  padding: 15px 30px;
+  padding: 10px 20px;
   border-radius: 8px;
   font-size: 15px;
   font-weight: bold;

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 function Spotlight() {
   const [spot, setSpot] = useState([]);
+
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products/1")
@@ -80,6 +81,7 @@ const Button = styled(Link)`
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 export default Spotlight;

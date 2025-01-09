@@ -1,42 +1,38 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-
-function App() {
-  const notify = () => toast("Wow so easy!");
-
-  return (
-    <div>
-      <button onClick={notify}>Notify!</button>
-      <ToastContainer />
-    </div>
-  );
-}
+import Header from "../Screens/Header";
 
 function Product() {
   const [prods, setProds] = useState([]);
+
+  const { id } = useParams();
+  console.log(prods, "prods");
+
   useEffect(() => {
     axios
-      .get("https://fakestoreapi.com/products")
+      .get(`https://fakestoreapi.com/products/${id}`)
       .then((response) => {
         setProds(response.data);
-        console.log(response.data, "response");
+        console.log(response.data);
       })
       .catch((error) => {})
       .finally(() => {});
   }, []);
   return (
     <>
-      <MainDiv>
+      <Header />
+      <MainDiv key={prods.id}>
         <LeftDiv>
-          <ProductImage />
+          <ProductImage src={prods.image} alt={prods.title} />
         </LeftDiv>
         <RightDiv>
-          <Title></Title>
-          <Price></Price>
-          <Description></Description>
+          <Title>{prods.title}</Title>
+          <Price>{prods.price}</Price>
+          <Description>{prods.description}</Description>
           <Select>
+            <Option>0</Option>
             <Option>1</Option>
             <Option>2</Option>
             <Option>3</Option>
@@ -45,20 +41,56 @@ function Product() {
             <Option>6</Option>
             <Option>7</Option>
           </Select>
-          <Button>ADD TO CART</Button>
+          <Button to="/cart">ADD TO CART</Button>
         </RightDiv>
       </MainDiv>
+      ;
     </>
   );
 }
-const MainDiv = styled.div``;
-const LeftDiv = styled.div``;
-const ProductImage = styled.img``;
-const RightDiv = styled.div``;
-const Title = styled.div``;
+const MainDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const LeftDiv = styled.div`
+  width: 40%;
+  padding: 20px;
+`;
+const ProductImage = styled.img`
+  width: 100%;
+  display: block;
+`;
+const RightDiv = styled.div`
+  width: 50%;
+  padding: 20px;
+`;
+const Title = styled.h1`
+  font-size: 40px;
+  font-weight: bold;
+`;
 const Price = styled.span``;
-const Description = styled.p``;
-const Select = styled.select``;
+const Description = styled.p`
+  color: #666060;
+  margin-bottom: 50px;
+`;
+const Select = styled.select`
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
+  height: 50px;
+  border-radius: 8px;
+  margin-right: 20px;
+`;
 const Option = styled.option``;
-const Button = styled.button``;
+const Button = styled(Link)`
+  background: #174916;
+  color: #000;
+  padding: 15px 90px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+`;
 export default Product;

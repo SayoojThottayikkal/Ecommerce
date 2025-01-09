@@ -32,7 +32,9 @@ function ProductList() {
               <Category>{item.Category}</Category>
               <Description>{item.description}</Description>
               <Price> {item.price}</Price>
-              <Button to="/product">Shop Now</Button>
+              <Button to={`/product/${item.id}`} key={item.id}>
+                Shop Now
+              </Button>
             </RightConatiner>
           </ProductContainer>
         ))}
@@ -105,5 +107,6 @@ const Button = styled(Link)`
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+  text-decoration: none;
 `;
 export default ProductList;

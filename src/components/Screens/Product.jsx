@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../Screens/Header";
+import { ToastContainer, toast } from "react-toastify";
 
 function Product() {
   const [prods, setProds] = useState([]);
-
   const { id } = useParams();
   console.log(prods, "prods");
+  const notify = () => toast("Wow so easy!");
 
   useEffect(() => {
     axios
@@ -41,7 +42,10 @@ function Product() {
             <Option>6</Option>
             <Option>7</Option>
           </Select>
-          <Button to="/cart">ADD TO CART</Button>
+          <Button onClick={notify} to={`/cart/${prods.id}`}>
+            ADD TO CART
+          </Button>
+          <ToastContainer />
         </RightDiv>
       </MainDiv>
       ;
@@ -52,6 +56,7 @@ const MainDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 60px;
 `;
 const LeftDiv = styled.div`
   width: 40%;
@@ -69,7 +74,10 @@ const Title = styled.h1`
   font-size: 40px;
   font-weight: bold;
 `;
-const Price = styled.span``;
+const Price = styled.span`
+  font-size: 30px;
+  font-weight: bold;
+`;
 const Description = styled.p`
   color: #666060;
   margin-bottom: 50px;
@@ -81,8 +89,11 @@ const Select = styled.select`
   height: 50px;
   border-radius: 8px;
   margin-right: 20px;
+  padding: 10px;
 `;
-const Option = styled.option``;
+const Option = styled.option`
+  padding: 10px;
+`;
 const Button = styled(Link)`
   background: #174916;
   color: #000;

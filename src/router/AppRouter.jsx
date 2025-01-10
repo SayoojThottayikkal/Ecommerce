@@ -9,7 +9,7 @@ function AppRouter() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route exact path="/product/:id" element={<Product />} />
-      <Route exact path="/cart" element={<Cart />} />
+      <Route exact path="/cart/:id" element={<Cart />} />
     </Routes>
   );
 }

@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import contact from "../../logo/contact.png";
 import fashion from "../../logo/fashion-logo.webp";
 import shopping from "../../logo/shopping-cart.png";
+import { Link } from "react-router-dom";
 function Header() {
   return (
     <>
@@ -26,7 +27,9 @@ function Header() {
             <RightList>About</RightList>
             <RightList>Contact</RightList>
             <RightList>
-              <LogoCrat src={shopping} alt="" />
+              <Link to={`/cart`}>
+                <LogoCrat src={shopping} alt="" />
+              </Link>
             </RightList>
             <RightList>
               <LogoContact src={contact} alt="" />

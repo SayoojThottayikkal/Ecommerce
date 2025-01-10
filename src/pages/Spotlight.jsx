@@ -28,7 +28,7 @@ function Spotlight() {
           <Description>{spot.description}</Description>
           <Price>{spot.price}</Price>
           <Category>{spot.category}</Category>
-          <Button to="/product">Shop Now</Button>
+          <Button to="/product/1">Shop Now</Button>
         </SpotLightRight>
       </SpotLight>
     </>

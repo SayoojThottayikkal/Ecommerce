@@ -10,3 +10,15 @@ ul,
 ol {
   list-style: none;
 }
+@font-face {
+  font-family: "kidilam_font"; /* Custom name for the font */
+  src: url("./Fonts/PlaywriteAUSA-Regular.woff") format("woff2");
+}
+@font-face {
+  font-family: "kidilam_font_light"; /* Custom name for the font */
+  src: url("./Fonts/Roboto-Light.woff") format("woff2");
+}
+@font-face {
+  font-family: "kidilam_font_bold"; /* Custom name for the font */
+  src: url("./Fonts/Roboto-Bold.woff") format("woff2");
+}

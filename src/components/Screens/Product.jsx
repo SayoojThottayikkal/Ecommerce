@@ -57,17 +57,19 @@ const MainDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 60px;
+  height: 75vh;
 `;
 const LeftDiv = styled.div`
-  width: 40%;
-  padding: 20px;
+  width: 30%;
+
+  padding: 60px;
 `;
 const ProductImage = styled.img`
   width: 100%;
   display: block;
 `;
 const RightDiv = styled.div`
-  width: 50%;
+  width: 60%;
   padding: 20px;
 `;
 const Title = styled.h1`
@@ -95,7 +97,7 @@ const Option = styled.option`
   padding: 10px;
 `;
 const Button = styled(Link)`
-  background: #174916;
+  background: #40b8a6;
   color: #000;
   padding: 15px 90px;
   border-radius: 8px;

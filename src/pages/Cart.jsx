@@ -4,6 +4,8 @@ import axios from "axios";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import pic from "../logo/1692947383286-714WUJlhbLS._SL1500_.jpg";
+import crt from "../logo/6011.jpg";
+import bg from "../logo/4066852.jpg";
 
 function Cart() {
   const [cart, setCart] = useState([]);
@@ -101,6 +103,7 @@ function Cart() {
 }
 const Maincontainer = styled.div`
   padding: 20px;
+  height: 100vh;
 `;
 const Heading = styled.h1`
   margin-left: 100px;
@@ -108,11 +111,12 @@ const Heading = styled.h1`
   font-weight: bold;
 `;
 const Span = styled.div`
-  border-bottom: 4px solid #678f67;
+  border: 3px solid #111312;
   width: 80%;
+  margin-bottom: 40px;
 `;
 const Table = styled.table`
-  border: 1px solid #000;
+  border: 3px solid #111312;
   width: 100%;
   margin-bottom: 20px;
 `;
@@ -125,6 +129,7 @@ const Tr = styled.tr`
 `;
 const Th = styled.th`
   border: 1px solid #000;
+
   text-align: center;
   padding: 10px;
 `;
@@ -133,12 +138,14 @@ const Td = styled.td`
   text-align: center;
 `;
 const ProductImage = styled.img`
-  display: block;
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   margin: 0 auto;
+  display: inline-block;
 `;
-const Tbody = styled.tbody``;
+const Tbody = styled.tbody`
+  background: #b2e8eb;
+`;
 const Footer = styled.tfoot`
   display: flex;
   justify-content: space-between;
@@ -149,13 +156,13 @@ const Input = styled.input`
   cursor: pointer;
 `;
 const Select = styled.select`
-  padding: 5px;
+  padding: 10px;
 `;
 const Option = styled.option`
   padding: 5px;
 `;
 const Button1 = styled.button`
-  background: #216925;
+  background: #62c4b5;
   padding: 5px 10px;
   border-radius: 4px;
   font-size: 16px;
@@ -169,21 +176,28 @@ const Button2 = styled.button`
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  color: #3d4a3e;
+  border: none;
+  &:hover {
+    color: black;
+  }
 `;
 const CartDiv = styled.div`
-  width: 100%;
+  width: 90%;
   display: inline-block;
 `;
 const CartTable = styled.table`
-  border: 1px solid #000;
+  border: 3px solid #111312;
   width: 30%;
-  margin-right: 100px;
+  position: absolute;
+  right: 100px;
+  text-align: center;
 `;
 const Tfooter = styled.tfoot`
   text-align: center;
 `;
 const Button3 = styled.button`
-  background: #216925;
+  background: #78dacc;
   padding: 5px 10px;
   border-radius: 4px;
   font-size: 16px;

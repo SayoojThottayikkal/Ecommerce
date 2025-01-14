@@ -2,74 +2,37 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import bg from "../logo/bg.jpg";
 
 function Spotlight() {
-  const [spot, setSpot] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://fakestoreapi.com/products/1")
-      .then((response) => {
-        setSpot(response.data);
-        console.log(response.data, "spt");
-      })
-      .catch((error) => {})
-      .finally(() => {});
-  }, []);
   return (
     <>
       <SpotLight>
-        <SpotLightLeft>
-          <SpotLightImage src={spot.image} />
-        </SpotLightLeft>
-        <SpotLightRight>
-          <Title>{spot.title}</Title>
-
-          <Description>{spot.description}</Description>
-          <Price>{spot.price}</Price>
-          <Category>{spot.category}</Category>
-          <Button to="/product/1">Shop Now</Button>
-        </SpotLightRight>
+        <Heading>Exiting offers</Heading>
+        <Description>Grab it before it ends!!!!</Description>
       </SpotLight>
     </>
   );
 }
 const SpotLight = styled.div`
-  padding: 30px;
+  height: calc(100vh - 50px);
+  background: url(${bg});
+  text-align: center;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 3px solid #000;
-  width: 80%;
-  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
 `;
-const SpotLightRight = styled.div`
-  width: 60%;
-`;
-const SpotLightLeft = styled.div`
-  padding: 20px;
-  width: 30%;
-`;
-const SpotLightImage = styled.img`
-  width: 100%;
-  display: block;
-`;
-const Title = styled.h1`
+
+const Heading = styled.h1`
   font-size: 40px;
-  font-weight: bold;
+
+  color: white;
+  font-family: "kidilam_font";
 `;
-const Price = styled.span`
-  font-size: 18px;
-  font-weight: bold;
-  display: flex;
-`;
+
 const Description = styled.p`
-  color: #5f5c5c;
-`;
-const Category = styled.p`
-  font-size: 18;
-  font-weight: bold;
-  margin-bottom: 30px;
+  color: white;
+  font-family: "kidilan_font_light";
 `;
 
 const Button = styled(Link)`

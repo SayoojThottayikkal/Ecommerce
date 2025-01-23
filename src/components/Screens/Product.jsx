@@ -1,15 +1,36 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../Screens/Header";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import { Context } from "../../context/store";
 
 function Product() {
   const [prods, setProds] = useState([]);
   const { id } = useParams();
-  console.log(prods, "prods");
+  const navigate = useNavigate();
   const notify = () => toast("Wow so easy!");
+  const {
+    state: { cart_data },
+    dispatch,
+  } = useContext(Context);
+
+  const addToCart = (prods) => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const updatedCart = [...storedCart, prods];
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    dispatch({
+      type: "UPDATE_CART_DATA",
+      cart_data: {
+        cartItems: updatedCart,
+      },
+    });
+    navigate("/cart");
+  };
+  const cartitems = cart_data.cartItems;
 
   useEffect(() => {
     axios
@@ -42,10 +63,28 @@ function Product() {
             <Option>6</Option>
             <Option>7</Option>
           </Select>
-          <Button onClick={notify} to={`/cart/${prods.id}`}>
+          <Button
+            onClick={() => {
+              notify();
+              addToCart(prods);
+            }}
+            // to={`/cart/${prods.id}`}
+          >
             ADD TO CART
           </Button>
-          <ToastContainer />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
         </RightDiv>
       </MainDiv>
       ;
@@ -96,7 +135,7 @@ const Select = styled.select`
 const Option = styled.option`
   padding: 10px;
 `;
-const Button = styled(Link)`
+const Button = styled.button`
   background: #40b8a6;
   color: #000;
   padding: 15px 90px;

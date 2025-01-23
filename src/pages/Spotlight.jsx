@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import bg from "../logo/bg.jpg";
 
-function Spotlight() {
+function Spotlight({ gettext }) {
+  console.log(gettext, "gettext");
+
   return (
     <>
       <SpotLight>

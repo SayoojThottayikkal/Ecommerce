@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../components/Screens/Header";
 import axios from "axios";
 import styled from "styled-components";
@@ -6,22 +6,14 @@ import { useParams } from "react-router-dom";
 import pic from "../logo/1692947383286-714WUJlhbLS._SL1500_.jpg";
 import crt from "../logo/verification.png";
 import bg from "../logo/round (1).png";
+import { Context } from "../context/store";
 
 function Cart() {
-  const [cart, setCart] = useState([]);
-  console.log(cart, "cart");
-
-  const { id } = useParams;
-  useEffect(() => {
-    axios
-      .get(`https://fakestoreapi.com/carts/${id}`)
-      .then((response) => {
-        setCart(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {})
-      .finally(() => {});
-  }, []);
+  const {
+    state: { cart_data },
+  } = useContext(Context);
+  const cartitems = cart_data.cartItems;
+  console.log(cartitems, "cart");
 
   return (
     <>
@@ -49,34 +41,37 @@ function Cart() {
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <TdImage>
-                <img src={bg} alt="" />
-              </TdImage>
+            {cartitems.map((item) => (
+              <Tr>
+                <TdImage>
+                  <img src={bg} alt="" />
+                </TdImage>
 
-              <Td>
-                <ProductImage src={pic} alt="" />
-              </Td>
-              <Td>HeadPhone</Td>
-              <Td>678</Td>
-              <Td>
-                <Select>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                </Select>
-              </Td>
-              <Td>56</Td>
-            </Tr>
+                <Td>
+                  <ProductImage src={item.image} alt="" />
+                </Td>
+                <Td>{item.title}</Td>
+                <Td>{item.price}</Td>
+                <Td>
+                  <Select>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </Select>
+                </Td>
+                <Td>56</Td>
+              </Tr>
+            ))}
+
             <tr>
               <Buttoncontainer colSpan="3">
                 <Input type="text" placeholder="Coupon code" />
@@ -138,9 +133,10 @@ const Span = styled.div`
 `;
 const Table = styled.table`
   border: 1px solid #626563;
-  width: 100%;
+  width: 74%;
   margin-bottom: 20px;
   margin-top: 80px;
+  margin-left: 98px;
 `;
 const Thead = styled.thead`
   border: 1px solid #000;
@@ -169,7 +165,7 @@ const ProductImage = styled.img`
 const Tbody = styled.tbody``;
 const Footer = styled.td`
   position: absolute;
-  right: 40px;
+  right: 290px;
   padding: 10px;
 `;
 const Input = styled.input`
@@ -213,7 +209,7 @@ const CartTable = styled.table`
   border: 1px solid #626563;
   width: 30%;
   position: absolute;
-  right: 100px;
+  right: 278px;
   text-align: left;
   padding: 20px;
   font-family: "kidilan_font_light";
